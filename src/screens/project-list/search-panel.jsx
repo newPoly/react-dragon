@@ -1,10 +1,8 @@
 import React from 'react';
-import {useEffect, useState} from 'react';
 
-export const SearchPanel = ({param, setParam}) => {
-  const [users, setUsers] = useState([]);
+export const SearchPanel = ({users, param, setParam}) => {
 
-  return <from>
+  return <form>
     <div>
       {/* setParam(Object.assign({}, param, {name: evt.target.value})) */}
       <input type="text" value={param.name} onChange={ evt => setParam({
@@ -17,9 +15,9 @@ export const SearchPanel = ({param, setParam}) => {
       })}>
         <option value={''}>负责人</option>
         {
-          users.map(user => <option value={user.id}>{user.name}</option>)
+          users.map(user => <option key={user.id} value={user.id}>{user.name}</option>)
         }
       </select>
     </div>
-  </from>
+  </form>
 }
