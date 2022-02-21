@@ -23,13 +23,25 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
-    "dragon-mock": "json-server __json_server_mock__/db.json --watch --port 3004"
+    "dragon-mock": "json-server __json_server_mock__/db.json --watch --port 3004",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest",
       "prettier"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -47,11 +59,23 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
+    "@storybook/addon-actions": "^6.4.19",
+    "@storybook/addon-essentials": "^6.4.19",
+    "@storybook/addon-interactions": "^6.4.19",
+    "@storybook/addon-links": "^6.4.19",
+    "@storybook/builder-webpack5": "^6.4.19",
+    "@storybook/manager-webpack5": "^6.4.19",
+    "@storybook/node-logger": "^6.4.19",
+    "@storybook/preset-create-react-app": "^4.0.1",
+    "@storybook/react": "^6.4.19",
+    "@storybook/testing-library": "^0.0.9",
+    "@types/qs": "^6.9.7",
     "eslint-config-prettier": "^8.3.0",
     "husky": ">=6",
     "json-server": "^0.17.0",
     "lint-staged": ">=10",
-    "prettier": "2.5.1"
+    "prettier": "2.5.1",
+    "webpack": "^5.69.1"
   },
   "lint-staged": {
     "*.{js,css,md,ts,tsx}": "prettier --write"
