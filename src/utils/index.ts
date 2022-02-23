@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-export const isFalsy = (value: number | boolean | string) =>
-  value === 0 ? false : !value;
+export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 // import { calculate } from "entry";
 //在一个函数里，改变传入的对象本身是不好的
 export const cleanObject = (object: object) => {
@@ -35,7 +34,7 @@ export const useMount = (callback: () => void) => {
 //   }
 // }
 
-export const useDebounce = (value: object, delay: number) => {
+export const useDebounce = <V>(value: V, delay: number) => {
   const [debounceValue, setDebounceValue] = useState(value);
   useEffect(() => {
     // 每次在Value变化以后，都会执行这个函数
@@ -44,4 +43,21 @@ export const useDebounce = (value: object, delay: number) => {
     return () => clearTimeout(timeout);
   }, [value, delay]);
   return debounceValue;
+};
+
+export const useArray = <T>(initialArray: T[]) => {
+  const [value, setValue] = useState(initialArray);
+  return {
+    value,
+    setValue,
+    add: (item: T) => {
+      setValue([...value, item]);
+    },
+    removeIndex: (index: number) => {
+      setValue(value.filter((_, i) => i !== index));
+    },
+    clear: () => {
+      setValue([]);
+    },
+  };
 };
