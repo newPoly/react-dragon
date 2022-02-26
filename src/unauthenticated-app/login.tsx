@@ -1,34 +1,7 @@
+import { useAuth } from "context/auth-context";
 import React, { FormEvent } from "react";
-
-// interface Base {
-//   id: number;
-// }
-
-// interface AD extends Base {
-//   name: string;
-// }
-
-// const test = (p: Base) => {
-// }
-
-// const a:AD = {id: 1, name: 'a'};
-// test(a)
-
 export const LoginScreen = () => {
-  const apiUrl = process.env.REACT_APP_API_URL;
-  const login = (param: { username: string; password: string }) => {
-    fetch(`${apiUrl}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(param),
-    }).then(async (response: Response) => {
-      if (response.ok) {
-      }
-    });
-  };
-
+  const { login, user } = useAuth();
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const username = (evt.currentTarget.elements[0] as HTMLInputElement).value;
@@ -37,6 +10,7 @@ export const LoginScreen = () => {
   };
   return (
     <form onSubmit={handleSubmit}>
+      {user ? <div>登录成功，用户名：{user?.name}</div> : null}
       <div>
         <label htmlFor="username">用户名</label>
         <input type="text" id={"username"} />

@@ -3,6 +3,8 @@ import React from "react";
 export interface User {
   id: number;
   name: string;
+  organiztion: string;
+  token: string;
 }
 
 interface SearchPanelProps {
