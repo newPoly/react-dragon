@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useState, useContext, createContext } from "react";
 import * as auth from "auth-provider";
 import { User } from "screens/project-list/search-panel";
 
@@ -7,7 +7,7 @@ interface AuthForm {
   password: string;
 }
 
-const AuthContext = React.createContext<
+const AuthContext = createContext<
   | {
       user: User | null;
       register: (form: AuthForm) => Promise<void>;
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export const useAuth = () => {
-  const context = React.useContext(AuthContext);
+  const context = useContext(AuthContext);
   if (!context) {
     throw new Error("useAuth 必须在AuthProvider中使用");
   }
