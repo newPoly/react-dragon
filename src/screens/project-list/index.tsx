@@ -8,6 +8,13 @@ import { useHttp } from "utils/http";
 //使用js时，大部分的错误都是在 run-time（运行时） 发现的
 //希望在静态代码中，就能找到其中一些错误 -> 强类型语言（微软开发的TS诞生）
 // const apiUrl = process.env.REACT_APP_API_URL;
+export const X = () => {
+  const [num, setNum] = useState(Math.random());
+  useEffect(() => {
+    setNum(1);
+  }, [num]);
+  return <h1>{num}</h1>;
+};
 
 export const ProjectListScreen = () => {
   const [param, setParam] = useState({
@@ -32,7 +39,7 @@ export const ProjectListScreen = () => {
     // });
   }, [debouncedParam]);
   useMount(() => {
-    // client('users').then(setUsers);
+    client("users").then(setUsers);
     // fetch(`${apiUrl}/users`).then(async (response) => {
     //   if (response.ok) {
     //     setUsers(await response.json());
@@ -43,6 +50,7 @@ export const ProjectListScreen = () => {
     <div>
       <SearchPanel users={users} param={param} setParam={setParam} />
       <List users={users} list={list} />
+      <X />
     </div>
   );
 };

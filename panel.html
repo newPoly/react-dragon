@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root{
+      --top-width: 256px;
+      --top-height: 88px;
+    }
+    body{
+      padding: 50px;
+      background: #000;
+    }
+    .container {
+      border-radius: 24px;
+      width: 960px;
+      height: 849px;
+      background: #22222e;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .top-bg{
+      position: absolute;
+      height: 50%;
+      width: 100%;
+    }
+    .radius {
+      display: block;
+      height: 20%;
+      border-radius: 24px 24px 0 0;
+      border: 2px solid #b04dff;
+      border-top-left-radius: 0;
+      border-bottom: 0;
+    }
+    .gradient{
+      display: block;
+      border: 2px solid;
+      height: 80%;
+      border-image: linear-gradient(
+          180deg,
+          rgba(176, 77, 255, 1), 
+          rgba(34, 34, 46, 1)
+        ) 
+        2 2;
+      border-top: 0;
+      border-bottom: 0;
+    }
+    .top{
+      display: flex;
+    }
+    .left, 
+    .right {
+      width: var(--top-width);
+      height: var(--top-height);
+      background: #22222e;
+      border-radius: 24px 24px 0 0;
+      display: inline-block;
+      border: 2px solid rgba(176, 77, 255, 0);
+      border-bottom: none;
+      position: relative;
+      cursor: pointer;
+    }
+    .right{
+      margin-left: 36px;
+    }
+    .left::after, .right::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -18px;
+      transform: matrix(1, 0, 0.466308, 1, 0, 0);
+      width: 39px;
+      height: 100%;
+      border: rgba(176, 77, 255, 0) 2px solid;
+      background: #22222e;
+      border-top-right-radius: 18px;
+      border-bottom: none;
+      border-left: none;
+      border-top: none;
+    }
+    .active{
+      border: 2px solid rgba(176, 77, 255, 1);
+      border-bottom: none;
+      top: 2px;
+      z-index: 1000 !important;
+    }
+    .active::after{
+      border-right: 2px solid #b04dff;
+      border-top: 2px solid #b04dff;
+      opacity: 1;
+      top: -2px !important;
+      z-index: 1000 !important;
+    }
+    /* 按钮样式 */
+    .bg {
+      color: #fff;
+      text-align: center;
+      line-height: 40px;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 400px auto 0;
+      height: 42px;
+      width: 170px;
+      border: solid 2px transparent;
+      background-image: linear-gradient(90deg, rgba(200, 21, 255, 0), #385df2 100%),
+        linear-gradient(90deg, #385df2 0%, #c815ff 100%);
+      background-origin: border-box;
+      border-radius: 10px;
+      background-clip: content-box, border-box;
+    }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div class="left active card" data-key="left"></div>
+    <div class="right card"  data-key="right"></div>
+  </div>
+  <div class="container">
+    <div class="top-bg">
+      <i class="radius"></i>
+      <i class="gradient"></i>
+    </div>
+    <div class="bg">
+      确 定
+    </div>
+  </div>
+  <script src="./test.js"></script>
+</body>
+</html>
